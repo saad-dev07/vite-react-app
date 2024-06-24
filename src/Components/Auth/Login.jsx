@@ -9,7 +9,7 @@ function Login () {
 
     const [values, setValues] = useState({ email: '', password: '' });
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_API_URL;
+    const API_URL = import.meta.env.VITE_API_URL || 'https://node-server-lyart.vercel.app/';
 
     const handleChange = (e) => {
         const { name, value } = e.target;

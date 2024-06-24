@@ -6,21 +6,33 @@ const app = express();
 const router = express.Router();
 app.use(express.json());
 app.use(cookieParser());
+// app.use(cors({
+//     origin: ["https://pronet-app.vercel.app/", "http://localhost:5173"],
+//     methods: ["POST", "GET", "DELETE"],
+//     credentials: true
+// }));
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "https://pronet-app.vercel.app/");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+// CORS configuration
 app.use(cors({
-    origin: ["https://pronet-app.vercel.app/", "http://localhost:5173"],
+    origin: ["https://pronet-app.vercel.app", "http://localhost:5173"],
     methods: ["POST", "GET", "DELETE"],
     credentials: true
 }));
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://pronet-app.vercel.app/");
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://pronet-app.vercel.app");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
-  
-router.use((req, res, next) => {
-    console.log("MIDDLEWARE!");
-    next();
-});
+// router.use((req, res, next) => {
+//     console.log("MIDDLEWARE!");
+//     next();
+// });
 
 // Register Router
 import registerRouter from './register.js';
