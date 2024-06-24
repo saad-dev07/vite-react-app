@@ -7,7 +7,7 @@ const router = express.Router();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ["https://pronet-application.vercel.app/", "http://localhost:5173"],
+    origin: ["https://pronet-app.vercel.app/", "http://localhost:5173"],
     methods: ["POST", "GET", "DELETE"],
     credentials: true
 }));
