@@ -9,7 +9,7 @@ function Login () {
 
     const [values, setValues] = useState({ email: '', password: '' });
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_API_URL || 'https://node-server-lyart.vercel.app/';
+    // const API_URL = import.meta.env.VITE_API_URL || 'https://node-server-lyart.vercel.app/'; `${API_URL}/`
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,10 +19,9 @@ function Login () {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(`${API_URL}/`, values, { withCredentials: true });
+            const response = await axios.post("http://localhost:8090/", values, { withCredentials: true });
             if (response.data.message === "Login successful!") {
                 setValues({ email: '', password: '' });
-
                 const role = response.data.role;
                 if (role === "Admin") {
                     navigate('/Admin');
