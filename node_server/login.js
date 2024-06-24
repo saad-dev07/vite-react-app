@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
-        return res.json({ error: "You are not authenticated." });
+        return res.json({ error: "You are not authenticated.", message: "Server is running perfectly!" });
     } else {
         jwt.verify(token, "jwt-secret-key", (err, decoded) => {
             if (err) {

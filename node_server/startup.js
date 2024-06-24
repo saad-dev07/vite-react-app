@@ -11,6 +11,12 @@ app.use(cors({
     methods: ["POST", "GET", "DELETE"],
     credentials: true
 }));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://pronet-app.vercel.app/");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+  
 router.use((req, res, next) => {
     console.log("MIDDLEWARE!");
     next();
