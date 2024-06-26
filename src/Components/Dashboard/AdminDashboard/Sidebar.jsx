@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function Sidebar({ isOpen, closeSidebar }) {
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [role, setRole] = useState('');
 
 
@@ -15,11 +15,12 @@ function Sidebar({ isOpen, closeSidebar }) {
     const fetchRole = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const result = await axios.get(`${API_BASE_URL}`);
+        console.log('Making request to:', `${NODE_API_URL}`);
+        const result = await axios.get(`${NODE_API_URL}`);
 
         console.log("Result from Sidebar: ",result);
-
         console.log("Result Status: ", result.data.Status);
+
         if (result.data.Status === "Success") {
           setRole(result.data.role);
         } else {
@@ -31,8 +32,7 @@ function Sidebar({ isOpen, closeSidebar }) {
     };
 
     fetchRole();
-    console.log("Answer of Fetch Role: ", fetchRole);
-  }, []);
+  }, [NODE_API_URL]);
 
   return (
     <aside className={`fixed inset-y-0 my-4 ml-4 block w-64 flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-lg transition-transform duration-200 xl:left-0 ${isOpen ? 'translate-x-0' : '-translate-x-full xl:translate-x-0'}`}>
