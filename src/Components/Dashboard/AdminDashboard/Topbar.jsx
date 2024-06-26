@@ -5,19 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBarsStaggered, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Topbar({ toggleSidebar }) {
+
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
   const [name, setName] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
   
   const navigate = useNavigate();
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get('http://localhost:8090/', `${API_BASE_URL}/`)
+    axios.get(`${API_BASE_URL}/`, 'http://localhost:8090/')
       .then(res => {
         if (res.data.Status === "Success") {
           setName(res.data.name);
@@ -31,7 +31,7 @@ function Topbar({ toggleSidebar }) {
   }, [navigate]);
 
   const Logout = () => {
-    axios.get('http://localhost:8090/Logout', { withCredentials: true })
+    axios.get(`${API_BASE_URL}/Logout`, 'http://localhost:8090/Logout', { withCredentials: true })
       .then(res => {
         navigate('/');
       })
