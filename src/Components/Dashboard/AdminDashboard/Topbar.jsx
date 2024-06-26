@@ -13,11 +13,11 @@ function Topbar({ toggleSidebar }) {
   };
 
   const API_BASE_URL = import.meta.env.VITE_API_URL;
-
+  
   const navigate = useNavigate();
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get(`${API_BASE_URL}/`)
+    axios.get('http://localhost:8090/', `${API_BASE_URL}/`)
       .then(res => {
         if (res.data.Status === "Success") {
           setName(res.data.name);

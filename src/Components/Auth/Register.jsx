@@ -21,10 +21,12 @@ function register () {
 
     const [roles, setRoles] = useState([]);
 
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
+
     useEffect(() => {
         const fetchRoles = async () => {
             try{
-                const response = await axios.get('http://localhost:8090/Roles');
+                const response = await axios.get(`${API_BASE_URL}/Roles`, 'http://localhost:8090/Roles');
                 setRoles(response.data);
             }
             catch(error){

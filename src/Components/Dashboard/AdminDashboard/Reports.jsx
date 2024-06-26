@@ -17,12 +17,14 @@ function Recordings() {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
+  
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchRecordingsData = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const result = await axios.get('http://localhost:8090/GetRecordingsData');
+        const result = await axios.get(`${API_BASE_URL}/GetRecordingsData`, 'http://localhost:8090/GetRecordingsData');
         setfetchRecordingsData(result.data.recordingsData);
       } catch (error) {
         console.log("Error fetching recordings: ", error);
