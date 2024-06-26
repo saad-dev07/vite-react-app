@@ -18,20 +18,20 @@ function Recordings() {
     setIsSidebarOpen(false);
   };
   
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchRecordingsData = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const result = await axios.get(`${API_BASE_URL}/GetRecordingsData`);
+        const result = await axios.get(`${NODE_API_URL}/GetRecordingsData`);
         setfetchRecordingsData(result.data.recordingsData);
       } catch (error) {
         console.log("Error fetching recordings: ", error);
       }
     };
     fetchRecordingsData();
-  }, []);
+  }, [NODE_API_URL]);
 
 return (
   <div className="absolute top-0 left-0 w-full h-full">

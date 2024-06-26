@@ -6,7 +6,7 @@ import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 
 function Topbar({ toggleSidebar }) {
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [name, setName] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -17,7 +17,7 @@ function Topbar({ toggleSidebar }) {
   const navigate = useNavigate();
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get(`${API_BASE_URL}`)
+    axios.get(`${NODE_API_URL}`)
       .then(res => {
         if (res.data.Status === "Success") {
           setName(res.data.name);
@@ -28,10 +28,10 @@ function Topbar({ toggleSidebar }) {
       .catch(error => {
         console.log(error);
       });
-  }, [navigate]);
+  }, [NODE_API_URL,navigate]);
 
   const Logout = () => {
-    axios.get(`${API_BASE_URL}/Logout`, { withCredentials: true })
+    axios.get(`${NODE_API_URL}/Logout`, { withCredentials: true })
       .then(res => {
         navigate('/');
       })

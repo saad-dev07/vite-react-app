@@ -21,12 +21,12 @@ function register () {
 
     const [roles, setRoles] = useState([]);
 
-    const API_BASE_URL = import.meta.env.VITE_API_URL;
+    const NODE_API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchRoles = async () => {
             try{
-                const response = await axios.get(`${API_BASE_URL}/Roles`);
+                const response = await axios.get(`${NODE_API_URL}/Roles`);
                 setRoles(response.data);
             }
             catch(error){
@@ -52,7 +52,7 @@ function register () {
             formData.append(key, values[key]);
         }
         try{
-            await axios.post(`${API_BASE_URL}/Register`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
+            await axios.post(`${NODE_API_URL}/Register`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
                 setValues({
                     f_name: '',

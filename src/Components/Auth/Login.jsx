@@ -10,7 +10,7 @@ function Login () {
     const [values, setValues] = useState({ email: '', password: '' });
     const navigate = useNavigate();
     
-    const API_BASE_URL = import.meta.env.VITE_API_URL;
+    const NODE_API_URL = import.meta.env.VITE_API_URL;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,7 +20,7 @@ function Login () {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(`${API_BASE_URL}`, values, { withCredentials: true });
+            const response = await axios.post(`${NODE_API_URL}`, values, { withCredentials: true });
             if (response.data.message === "Login successful!") {
                 setValues({ email: '', password: '' });
                 const role = response.data.role;

@@ -17,13 +17,13 @@ function UserManagement() {
     setIsSidebarOpen(false);
   };
     
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const result = await axios.get(`${API_BASE_URL}/GetUserData`, 'http://localhost:8090/GetUserData');
+        const result = await axios.get(`${NODE_API_URL}/GetUserData`, 'http://localhost:8090/GetUserData');
         setFetchUsersData(result.data.userData);
       } catch (error) {
         console.log("Error fetching users: ", error);
@@ -35,12 +35,12 @@ function UserManagement() {
   const handleEdit = (row) => {
     const UserId = row.UserId;
     console.log('Edit user with ID:', UserId);
-    // Add your edit logic here
+    // edit code
   };
 
   const handleDelete = async (UserId) => {
     try {
-      const response = await axios.delete(`${API_BASE_URL}/Delete`, {
+      const response = await axios.delete(`${NODE_API_URL}/Delete`, {
         params: { UserId }
       });
       setFetchUsersData(fetchUsersData.filter(user => user.UserId !== UserId));

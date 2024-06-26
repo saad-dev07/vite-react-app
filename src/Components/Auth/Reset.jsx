@@ -16,12 +16,12 @@ function ResetPassword () {
         setValues({ ...values, [name]: value });
     };
 
-    const API_BASE_URL = import.meta.env.VITE_API_URL;
+    const NODE_API_URL = import.meta.env.VITE_API_URL;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try{
-            await axios.post(`${API_BASE_URL}/ResetPassword`, values, { withCredentials: true });
+            await axios.post(`${NODE_API_URL}/ResetPassword`, values, { withCredentials: true });
                 setValues({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
                 window.alert("Password reset successfully!");
                 navigate('/');
