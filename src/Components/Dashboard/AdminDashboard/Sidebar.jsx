@@ -15,7 +15,7 @@ function Sidebar({ isOpen, closeSidebar }) {
     const fetchRole = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const result = await axios.get(`${API_BASE_URL}/`);
+        const result = await axios.get(`${API_BASE_URL}`);
         console.log("Result from Sidebar: ",result);
         if (result.data.Status === "Success") {
           setRole(result.data.role);

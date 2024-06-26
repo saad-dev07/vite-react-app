@@ -20,7 +20,7 @@ function Login () {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(`${API_BASE_URL}/`, values, { withCredentials: true });
+            const response = await axios.post(`${API_BASE_URL}`, values, { withCredentials: true });
             if (response.data.message === "Login successful!") {
                 setValues({ email: '', password: '' });
                 const role = response.data.role;

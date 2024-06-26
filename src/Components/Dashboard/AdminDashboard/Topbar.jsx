@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBarsStaggered, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 
 function Topbar({ toggleSidebar }) {
 
@@ -17,7 +17,7 @@ function Topbar({ toggleSidebar }) {
   const navigate = useNavigate();
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get(`${API_BASE_URL}/`)
+    axios.get(`${API_BASE_URL}`)
       .then(res => {
         if (res.data.Status === "Success") {
           setName(res.data.name);
