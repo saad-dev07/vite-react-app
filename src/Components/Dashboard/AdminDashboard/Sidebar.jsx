@@ -7,16 +7,19 @@ import axios from 'axios';
 
 function Sidebar({ isOpen, closeSidebar }) {
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
   const [role, setRole] = useState('');
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchRole = async () => {
       try {
         axios.defaults.withCredentials = true;
         const result = await axios.get(`${API_BASE_URL}`);
+
         console.log("Result from Sidebar: ",result);
+
+        console.log("Result Status: ", result.data.Status);
         if (result.data.Status === "Success") {
           setRole(result.data.role);
         } else {
