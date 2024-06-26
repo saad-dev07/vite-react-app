@@ -17,7 +17,7 @@ function Topbar({ toggleSidebar }) {
   const navigate = useNavigate();
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get(`${API_BASE_URL}/`, 'http://localhost:8090/')
+    axios.get(`${API_BASE_URL}/`)
       .then(res => {
         if (res.data.Status === "Success") {
           setName(res.data.name);
@@ -31,7 +31,7 @@ function Topbar({ toggleSidebar }) {
   }, [navigate]);
 
   const Logout = () => {
-    axios.get(`${API_BASE_URL}/Logout`, 'http://localhost:8090/Logout', { withCredentials: true })
+    axios.get(`${API_BASE_URL}/Logout`, { withCredentials: true })
       .then(res => {
         navigate('/');
       })

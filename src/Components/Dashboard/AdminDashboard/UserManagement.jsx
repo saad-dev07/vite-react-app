@@ -40,7 +40,7 @@ function UserManagement() {
 
   const handleDelete = async (UserId) => {
     try {
-      const response = await axios.delete(`${API_BASE_URL}/Delete`, 'http://localhost:8090/Delete', {
+      const response = await axios.delete(`${API_BASE_URL}/Delete`, {
         params: { UserId }
       });
       setFetchUsersData(fetchUsersData.filter(user => user.UserId !== UserId));
