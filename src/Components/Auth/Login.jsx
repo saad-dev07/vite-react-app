@@ -21,7 +21,7 @@ function Login () {
         event.preventDefault();
         try {
             axios.defaults.withCredentials=true;
-            const response = await axios.post(`${NODE_API_URL}`, values, { withCredentials: true });
+            const response = await axios.post('https://node-server-lyart.vercel.app', values, { withCredentials: true });
 
             if (response.data.message === "Login successful!") {
                 setValues({ email: '', password: '' });
