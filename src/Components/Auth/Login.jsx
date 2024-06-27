@@ -21,8 +21,10 @@ function Login () {
         event.preventDefault();
         try {
             const response = await axios.post(`${NODE_API_URL}`, values, { withCredentials: true });
+
             if (response.data.message === "Login successful!") {
                 setValues({ email: '', password: '' });
+                
                 const role = response.data.role;
                 if (role === "Admin") {
                     navigate('/Admin');
