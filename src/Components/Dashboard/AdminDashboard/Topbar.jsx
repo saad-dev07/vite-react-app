@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 
+axios.defaults.withCredentials = true;
+
 function Topbar({ toggleSidebar }) {
   const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [name, setName] = useState('');
@@ -14,8 +16,8 @@ function Topbar({ toggleSidebar }) {
   };
   
   const navigate = useNavigate();
+
   useEffect(() => {
-    axios.defaults.withCredentials = true;
     axios.get(`${NODE_API_URL}`)
       .then(res => {
         if (res.data.Status === "Success") {
@@ -30,7 +32,7 @@ function Topbar({ toggleSidebar }) {
   }, [NODE_API_URL,navigate]);
 
   const Logout = () => {
-    axios.get(`${NODE_API_URL}/Logout`, { withCredentials: true })
+    axios.get(`${NODE_API_URL}/Logout`)
       .then(res => {
         navigate('/');
       })

@@ -5,6 +5,8 @@ import { faHome, faUsers, faChartLine, faTimes } from '@fortawesome/free-solid-s
 import logo from '/assets/img/web/logo.png';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 function Sidebar({ isOpen, closeSidebar }) {
   const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [role, setRole] = useState('');
@@ -12,7 +14,6 @@ function Sidebar({ isOpen, closeSidebar }) {
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        axios.defaults.withCredentials = true;
         const result = await axios.get(`${NODE_API_URL}`);
 
         console.log("Result from Sidebar: ",result);
