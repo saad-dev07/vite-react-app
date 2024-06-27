@@ -6,45 +6,87 @@ import logo from '/assets/img/web/logo.png';
 import axios from 'axios';
 
 function Login () {
-    const [values, setValues] = useState({ email: '', password: '' });
-    const navigate = useNavigate();
-    
-    const NODE_API_URL = import.meta.env.NODE_API_URL;
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setValues({ ...values, [name]: value });
-    };
+      const [values, setValues] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
+  const NODE_API_URL = import.meta.env.NODE_API_URL;
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post(`${NODE_API_URL}`, values, { withCredentials: true });
-            if (response.data.message === "Login successful!") {
-                setValues({ email: '', password: '' });
-                const role = response.data.role;
-                if (role === "Admin") {
-                    navigate('/Admin');
-                } else if (role === "User") {
-                    navigate('/User');
-                } else {
-                    window.alert('Invalid Role!');
-                }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
 
-            } else if (response.data.resetPassword) {
-                window.alert(response.data.message);
-                navigate('/ResetPassword');
-            } else {
-                window.alert(response.data.message);
-            }
-        } catch (err) {
-            if (err.response && err.response.data && err.response.data.error) {
-                window.alert(err.response.data.error);
-            } else {
-                window.alert('Request failed from Login');
-            }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(`${NODE_API_URL}`, values, { withCredentials: true });
+      console.log('Login response:', response);
+
+      if (response.data.message === "Login successful!") {
+        setValues({ email: '', password: '' });
+        const role = response.data.role;
+        if (role === "Admin") {
+          navigate('/Admin');
+        } else if (role === "User") {
+          navigate('/User');
+        } else {
+          window.alert('Invalid Role!');
         }
-    };
+      } else if (response.data.resetPassword) {
+        window.alert(response.data.message);
+        navigate('/ResetPassword');
+      } else {
+        window.alert(response.data.message);
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      if (err.response && err.response.data && err.response.data.error) {
+        window.alert(err.response.data.error);
+      } else {
+        window.alert('Request failed from Login');
+      }
+    }
+  };
+
+    // const [values, setValues] = useState({ email: '', password: '' });
+    // const navigate = useNavigate();
+    
+    // const NODE_API_URL = import.meta.env.VITE_API_URL;
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setValues({ ...values, [name]: value });
+    // };
+
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         const response = await axios.post(`${NODE_API_URL}`, values, { withCredentials: true });
+    //         if (response.data.message === "Login successful!") {
+    //             setValues({ email: '', password: '' });
+    //             const role = response.data.role;
+    //             if (role === "Admin") {
+    //                 navigate('/Admin');
+    //             } else if (role === "User") {
+    //                 navigate('/User');
+    //             } else {
+    //                 window.alert('Invalid Role!');
+    //             }
+
+    //         } else if (response.data.resetPassword) {
+    //             window.alert(response.data.message);
+    //             navigate('/ResetPassword');
+    //         } else {
+    //             window.alert(response.data.message);
+    //         }
+    //     } catch (err) {
+    //         if (err.response && err.response.data && err.response.data.error) {
+    //             window.alert(err.response.data.error);
+    //         } else {
+    //             window.alert('Request failed from Login');
+    //         }
+    //     }
+    // };
 
     return (
         <div className="bg-image flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat">
