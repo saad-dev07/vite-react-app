@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 function UserManagement() {
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [fetchUsersData, setFetchUsersData] = useState([]);
 
@@ -16,14 +17,12 @@ function UserManagement() {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
-    
-  const NODE_API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const result = await axios.get(`${NODE_API_URL}/GetUserData`, 'http://localhost:8090/GetUserData');
+        const result = await axios.get(`${NODE_API_URL}/GetUserData`);
         setFetchUsersData(result.data.userData);
       } catch (error) {
         console.log("Error fetching users: ", error);

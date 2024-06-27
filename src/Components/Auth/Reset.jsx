@@ -7,7 +7,7 @@ import logo from '/assets/img/web/logo.png';
 import axios from 'axios';
 
 function ResetPassword () {
-
+    const NODE_API_URL = import.meta.env.VITE_API_URL;
     const [values, setValues] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
     const navigate = useNavigate();
 
@@ -15,8 +15,6 @@ function ResetPassword () {
         const { name, value } = e.target;
         setValues({ ...values, [name]: value });
     };
-
-    const NODE_API_URL = import.meta.env.VITE_API_URL;
 
     const handleSubmit = async (event) => {
         event.preventDefault();

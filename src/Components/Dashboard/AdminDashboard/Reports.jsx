@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faPhone, faIdBadge, faPhoneAlt, faPhoneSquareAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Recordings() {
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [fetchRecordingsData, setfetchRecordingsData] = useState([]);
 
@@ -17,8 +18,6 @@ function Recordings() {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
-  
-  const NODE_API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchRecordingsData = async () => {

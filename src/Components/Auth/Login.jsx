@@ -6,11 +6,9 @@ import logo from '/assets/img/web/logo.png';
 import axios from 'axios';
 
 function Login () {
-
+    const NODE_API_URL = import.meta.env.VITE_API_URL;
     const [values, setValues] = useState({ email: '', password: '' });
     const navigate = useNavigate();
-    
-    const NODE_API_URL = import.meta.env.NODE_API_URL;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,8 +18,8 @@ function Login () {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            axios.defaults.withCredentials=true;
-            const response = await axios.post('https://node-server-lyart.vercel.app', values, { withCredentials: true });
+            axios.defaults.withCredentials = true;
+            const response = await axios.post(`${NODE_API_URL}`, values, { withCredentials: true });
 
             if (response.data.message === "Login successful!") {
                 setValues({ email: '', password: '' });
@@ -34,7 +32,6 @@ function Login () {
                 } else {
                     window.alert('Invalid Role!');
                 }
-
             } else if (response.data.resetPassword) {
                 window.alert(response.data.message);
                 navigate('/ResetPassword');
@@ -54,15 +51,12 @@ function Login () {
         <div className="bg-image flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat">
             <div className="flex items-center justify-center h-full w-full">
                 <div className="flex flex-col bg-white bg-opacity-50 shadow-xl px-10 py-12 rounded-3xl w-full max-w-md">
-
                     <div className="self-center mb-6">
                         <img src={logo} alt="Pronet Logo" className="h-20 w-40" />
                     </div>
-
                     <div className="text-center text-gray-800 mb-6 text-lg font-light">
                         Enter your credentials to access your account
                     </div>
-
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-col mb-6">
                             <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-700">E-Mail Address:</label>
@@ -73,7 +67,6 @@ function Login () {
                                 <input id="email" type="email" name="email" className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-full border border-gray-300 w-full py-2 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent" autoFocus placeholder="Enter your email" required onChange={handleChange} value={values.email} />
                             </div>
                         </div>
-
                         <div className="flex flex-col mb-8">
                             <label htmlFor="password" className="mb-2 text-sm font-medium text-gray-700">Password:</label>
                             <div className="relative">
@@ -83,7 +76,6 @@ function Login () {
                                 <input id="password" type="password" name="password" className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-full border border-gray-300 w-full py-2 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent" placeholder="Enter your password" required onChange={handleChange} value={values.password} />
                             </div>
                         </div>
-
                         <div className="flex w-full">
                             <button type="submit" className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-gray-700 hover:bg-gray-800 rounded-full py-3 w-full transition duration-150 ease-in">
                                 <span className="mr-2 uppercase">Login</span>
@@ -95,7 +87,6 @@ function Login () {
                             </button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

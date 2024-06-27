@@ -7,7 +7,7 @@ import '../../assets/css/style.css';
 import logo from '/assets/img/web/logo.png';
 
 function register () {
-    
+    const NODE_API_URL = import.meta.env.VITE_API_URL;
     const [values, setValues] = useState({
         f_name: '',
         l_name: '',
@@ -18,10 +18,7 @@ function register () {
         userRole: '',
         image: ''
     });
-
     const [roles, setRoles] = useState([]);
-
-    const NODE_API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchRoles = async () => {

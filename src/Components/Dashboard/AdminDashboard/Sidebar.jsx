@@ -6,7 +6,7 @@ import logo from '/assets/img/web/logo.png';
 import axios from 'axios';
 
 function Sidebar({ isOpen, closeSidebar }) {
-  const NODE_API_URL = import.meta.env.NODE_API_URL;
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [role, setRole] = useState('');
 
   useEffect(() => {

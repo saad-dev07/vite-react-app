@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 
 function Topbar({ toggleSidebar }) {
-
-  const NODE_API_URL = import.meta.env.NODE_API_URL;
+  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [name, setName] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
