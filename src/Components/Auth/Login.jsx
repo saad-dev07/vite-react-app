@@ -6,11 +6,10 @@ import logo from '/assets/img/web/logo.png';
 import axios from 'axios';
 
 function Login () {
-
     const [values, setValues] = useState({ email: '', password: '' });
     const navigate = useNavigate();
     
-    const NODE_API_URL = import.meta.env.VITE_API_URL;
+    const NODE_API_URL = import.meta.env.NODE_API_URL;
 
     const handleChange = (e) => {
         const { name, value } = e.target;

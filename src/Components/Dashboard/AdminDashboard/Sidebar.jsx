@@ -6,16 +6,13 @@ import logo from '/assets/img/web/logo.png';
 import axios from 'axios';
 
 function Sidebar({ isOpen, closeSidebar }) {
-
-  const NODE_API_URL = import.meta.env.VITE_API_URL;
+  const NODE_API_URL = import.meta.env.NODE_API_URL;
   const [role, setRole] = useState('');
-
 
   useEffect(() => {
     const fetchRole = async () => {
       try {
         axios.defaults.withCredentials = true;
-        console.log('Making request to:', `${NODE_API_URL}`);
         const result = await axios.get(`${NODE_API_URL}`);
 
         console.log("Result from Sidebar: ",result);
