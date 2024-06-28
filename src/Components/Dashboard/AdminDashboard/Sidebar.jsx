@@ -14,7 +14,7 @@ function Sidebar({ isOpen, closeSidebar }) {
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        const result = await axios.get(`${NODE_API_URL}`);
+        const result = await axios.get(`${NODE_API_URL}/Roles`);
 
         console.log("Result from Sidebar: ",result);
         console.log("Result Status: ", result.data.Status);
