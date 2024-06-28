@@ -8,6 +8,7 @@ axios.defaults.withCredentials = true;
 
 function Topbar({ toggleSidebar }) {
   const NODE_API_URL = import.meta.env.VITE_API_URL;
+  // axios.defaults.baseURL = NODE_API_URL; // 'https://node-server-lyart.vercel.app';
   const [name, setName] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
