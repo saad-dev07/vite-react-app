@@ -14,7 +14,7 @@ function Sidebar({ isOpen, closeSidebar }) {
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        const result = await axios.get(`${NODE_API_URL}/Roles`);
+        const result = await axios.get(`${NODE_API_URL}`);
 
         console.log("Result from Sidebar: ",result);
         console.log("Result Status: ", result.data.Status);
@@ -30,7 +30,7 @@ function Sidebar({ isOpen, closeSidebar }) {
     };
 
     fetchRole();
-  }, [NODE_API_URL]);
+  }, [`${NODE_API_URL}`]);
 
   return (
     <aside className={`fixed inset-y-0 my-4 ml-4 block w-64 flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-lg transition-transform duration-200 xl:left-0 ${isOpen ? 'translate-x-0' : '-translate-x-full xl:translate-x-0'}`}>

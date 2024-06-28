@@ -19,7 +19,7 @@ function Topbar({ toggleSidebar }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(NODE_API_URL)
+    axios.get(`${NODE_API_URL}`)
       .then(res => {
         if (res.data.Status === "Success") {
           setName(res.data.name);
@@ -30,7 +30,7 @@ function Topbar({ toggleSidebar }) {
       .catch(error => {
         console.log(error);
       });
-  }, [NODE_API_URL,navigate]);
+  }, [`${NODE_API_URL}`,navigate]);
 
   const Logout = () => {
     axios.get(`${NODE_API_URL}/Logout`)
