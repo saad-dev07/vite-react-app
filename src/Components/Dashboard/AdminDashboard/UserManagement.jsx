@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
-import axios from 'axios';
+import api from '../../../utils/api';
 import DataTable from 'react-data-table-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 function UserManagement() {
-  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [fetchUsersData, setFetchUsersData] = useState([]);
 
@@ -21,8 +20,7 @@ function UserManagement() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        axios.defaults.withCredentials = true;
-        const result = await axios.get(`${NODE_API_URL}/GetUserData`);
+        const result = await api.get('/GetUserData');
         setFetchUsersData(result.data.userData);
       } catch (error) {
         console.log("Error fetching users: ", error);
@@ -39,7 +37,7 @@ function UserManagement() {
 
   const handleDelete = async (UserId) => {
     try {
-      const response = await axios.delete(`${NODE_API_URL}/Delete`, {
+      const response = await api.delete('/Delete', {
         params: { UserId }
       });
       setFetchUsersData(fetchUsersData.filter(user => user.UserId !== UserId));
@@ -77,7 +75,7 @@ function UserManagement() {
                           {
                               name: 'Profile Image',
                               selector: row => {
-                                  const image = `/assets/img/user/${row.ProfileImage}`;
+                                  const image = `/images/users/${row.ProfileImage}`;
                                   return row.ProfileImage ? (
                                       <div className="flex justify-center">
                                           <img src={image} alt="Profile" className="h-10 w-10 rounded-full" />

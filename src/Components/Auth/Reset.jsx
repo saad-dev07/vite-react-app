@@ -3,11 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/css/style.css';
-import logo from '/assets/img/web/logo.png';
-import axios from 'axios';
+import logo from '/images/web/logo.png';
+import api from '../../utils/api';
 
 function ResetPassword () {
-    const NODE_API_URL = import.meta.env.VITE_API_URL;
     const [values, setValues] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
     const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ function ResetPassword () {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try{
-            await axios.post(`${NODE_API_URL}/ResetPassword`, values, { withCredentials: true });
+            await api.post('/ResetPassword', values, { withCredentials: true });
                 setValues({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
                 window.alert("Password reset successfully!");
                 navigate('/');

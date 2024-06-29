@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
-import axios from 'axios';
+import api from '../../../utils/api';
 import DataTable from 'react-data-table-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faPhone, faSearch, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-import { faSearch, faPhone, faIdBadge, faPhoneAlt, faPhoneSquareAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 function Recordings() {
-  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [fetchRecordingsData, setfetchRecordingsData] = useState([]);
+  const [recordingsData, setRecordingsData] = useState([]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -20,17 +18,16 @@ function Recordings() {
   };
 
   useEffect(() => {
-    const fetchRecordingsData = async () => {
+    const recordingsData = async () => {
       try {
-        axios.defaults.withCredentials = true;
-        const result = await axios.get(`${NODE_API_URL}/GetRecordingsData`);
-        setfetchRecordingsData(result.data.recordingsData);
+        const result = await api.get('/GetRecordingsData');
+        setRecordingsData(result.data.recordingsData);
       } catch (error) {
         console.log("Error fetching recordings: ", error);
       }
     };
-    fetchRecordingsData();
-  }, [NODE_API_URL]);
+    recordingsData();
+  }, []);
 
 return (
   <div className="absolute top-0 left-0 w-full h-full">
@@ -212,7 +209,7 @@ return (
                       },
                     },
                   }}
-                  data={fetchRecordingsData}
+                  data={recordingsData}
                   pagination
                   fixedHeader
                   paginationPerPage={50}

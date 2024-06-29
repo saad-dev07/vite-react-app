@@ -1,22 +1,19 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUsers, faChartLine, faTimes } from '@fortawesome/free-solid-svg-icons';
-import logo from '/assets/img/web/logo.png';
-import axios from 'axios';
-
-axios.defaults.withCredentials = true;
+import logo from '/images/web/logo.png';
+import api from '../../../utils/api';
 
 function Sidebar({ isOpen, closeSidebar }) {
-  const NODE_API_URL = import.meta.env.VITE_API_URL;
   const [role, setRole] = useState('');
 
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        const result = await axios.get(`${NODE_API_URL}`);
+        const result = await api.get('/');
 
-        console.log("Result from Sidebar: ",result);
+        console.log("Result from Sidebar: ", result);
         console.log("Result Status: ", result.data.Status);
 
         if (result.data.Status === "Success") {
@@ -30,8 +27,8 @@ function Sidebar({ isOpen, closeSidebar }) {
     };
 
     fetchRole();
-  }, [`${NODE_API_URL}`]);
-
+  }, []);
+  
   return (
     <aside className={`fixed inset-y-0 my-4 ml-4 block w-64 flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-lg transition-transform duration-200 xl:left-0 ${isOpen ? 'translate-x-0' : '-translate-x-full xl:translate-x-0'}`}>
 

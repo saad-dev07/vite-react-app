@@ -2,32 +2,22 @@ import React, {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faLock, faPhone, faCaretDown, faImage } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
-import axios from 'axios';
+import api from '../../utils/api';
 import '../../assets/css/style.css';
-import logo from '/assets/img/web/logo.png';
+import logo from '/images/web/logo.png';
 
 function register () {
-    const NODE_API_URL = import.meta.env.VITE_API_URL;
-    const [values, setValues] = useState({
-        f_name: '',
-        l_name: '',
-        email: '',
-        password: '',
-        c_password: '',
-        contact_no: '',
-        userRole: '',
-        image: ''
-    });
+    const [values, setValues] = useState({ f_name: '', l_name: '', email: '', password: '', c_password: '', contact_no: '', userRole: '', image: '' });
     const [roles, setRoles] = useState([]);
 
     useEffect(() => {
         const fetchRoles = async () => {
             try{
-                const response = await axios.get(`${NODE_API_URL}/Roles`);
+                const response = await api.get('/Roles');
                 setRoles(response.data);
             }
             catch(error){
-                console.error("Error fetching roles in register form:" + error);
+                console.error("Error fetching roles in register form: " + error);
             }
         }
         fetchRoles();
@@ -49,18 +39,9 @@ function register () {
             formData.append(key, values[key]);
         }
         try{
-            await axios.post(`${NODE_API_URL}/Register`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
+            await api.post('/Register', formData, {headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
-                setValues({
-                    f_name: '',
-                    l_name: '',
-                    email: '',
-                    password: '',
-                    c_password: '',
-                    contact_no: '',
-                    userRole: '',
-                    image: ''
-                });
+                setValues({ f_name: '', l_name: '', email: '', password: '', c_password: '', contact_no: '', userRole: '', image: '' });
                 window.alert('Registration successful!');
             })
         }      

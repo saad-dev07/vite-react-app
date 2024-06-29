@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import logo from '/assets/img/web/logo.png';
-import axios from 'axios';
+import logo from '/images/web/logo.png';
+import api from '../../utils/api';
 
-axios.defaults.withCredentials = true;
-
-function Login () {
-    const NODE_API_URL = import.meta.env.VITE_API_URL;
+function Login() {
     const [values, setValues] = useState({ email: '', password: '' });
     const navigate = useNavigate();
 
@@ -20,11 +17,10 @@ function Login () {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(NODE_API_URL, values, { withCredentials: true });
+            const response = await api.post('/', values);
 
             if (response.data.message === 'Login successful!') {
                 setValues({ email: '', password: '' });
-                
                 const role = response.data.role;
                 if (role === "Admin") {
                     navigate('/Admin');
@@ -47,7 +43,6 @@ function Login () {
             }
         }
     };
-
 return (
         <div className="bg-image flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat">
             <div className="flex items-center justify-center h-full w-full">

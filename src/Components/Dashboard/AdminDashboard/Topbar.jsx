@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 
-axios.defaults.withCredentials = true;
-
 function Topbar({ toggleSidebar }) {
-  const NODE_API_URL = import.meta.env.VITE_API_URL;
-  // axios.defaults.baseURL = NODE_API_URL; // 'https://node-server-lyart.vercel.app';
   const [name, setName] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-  
-  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${NODE_API_URL}`)
+    api.get('/')
       .then(res => {
         if (res.data.Status === "Success") {
           setName(res.data.name);
@@ -30,16 +25,16 @@ function Topbar({ toggleSidebar }) {
       .catch(error => {
         console.log(error);
       });
-  }, [`${NODE_API_URL}`,navigate]);
+  }, [navigate]);
 
   const Logout = () => {
-    axios.get(`${NODE_API_URL}/Logout`)
+    api.get('/Logout')
       .then(res => {
         navigate('/');
       })
       .catch(err => console.log(err));
   };
-
+  
   return (
 
     <nav className="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 my-4 shadow-md rounded-md">
