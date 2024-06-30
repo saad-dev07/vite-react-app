@@ -18,7 +18,6 @@ function Login() {
         event.preventDefault();
         try {
             const response = await api.post('/', values);
-
             if (response.data.message === 'Login successful!') {
                 setValues({ email: '', password: '' });
                 const role = response.data.role;
