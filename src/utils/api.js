@@ -5,11 +5,11 @@ const api = axios.create({
     withCredentials: true
 });
 
-api.interceptors.request.use(
+api.interceptors.response.use(
     (config) => {
         const token = document.cookie.split('; ').find(row => row.startsWith('token='));
         if (token) {
-            config.headers.Authorization = `Bearer ${token.split('=')[1]}`;
+            config.headers['set-cookie'] = `Bearer ${token.split('=')[1]}`;
         }
         return config;
     },
