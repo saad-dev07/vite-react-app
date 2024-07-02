@@ -22,16 +22,16 @@ function Login() {
             console.log("Response from Login.jsx: ",response);
 
             // Extract the token from response headers
-            // const tokenHeader = response.headers['set-cookie'];
-            // if (!tokenHeader || tokenHeader.length === 0) {
-            //     throw new Error('Token not found in response headers.');
-            // }
+            const tokenHeader = response.headers['set-cookie'];
+            if (!tokenHeader || tokenHeader.length === 0) {
+                throw new Error('Token not found in response headers.');
+            }
 
-            // // Extract token value from the set-cookie header
-            // const token = tokenHeader[0].split(';')[0].split('=')[1];
+            // Extract token value from the set-cookie header
+            const token = tokenHeader[0].split(';')[0].split('=')[1];
 
-            // // Store the token securely in cookies after login
-            // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
+            // Store the token securely in cookies after login
+            document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
 
 
             if (response.data.message === 'Login successful!') {
@@ -42,8 +42,8 @@ function Login() {
                 // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`; // SameSite=None
                 
                 // Store the token securely in cookies after login
-                const token = response.data.token;
-                document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
+                // const token = response.data.token;
+                // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
 
                 // Decode the token to get the role
                 const decodedToken = jwt_decode(token);
