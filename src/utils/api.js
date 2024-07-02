@@ -47,4 +47,9 @@ api.interceptors.request.use(
     }
 );
 
+// Store the token in cookies
+const token = response.data.token;
+document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`;
+// SameSite=None
+
 export default api;
