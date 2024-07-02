@@ -31,7 +31,7 @@ function Login() {
             const token = tokenHeader[0].split(';')[0].split('=')[1];
 
             // Store the token securely in cookies after login
-            document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`;
+            // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`;
 
 
             if (response.data.message === 'Login successful!') {
@@ -41,14 +41,9 @@ function Login() {
                 // const token = response.headers['set-cookie'];
                 // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`; // SameSite=None
                 
-                // Store the token securely in cookies after login
-                // const token = response.data.token;
-                // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
-
                 // Decode the token to get the role
                 const decodedToken = jwt_decode(token);
                 const role = decodedToken.role;
-
 
                 // const role = response.data.role;
                 if (role === "Admin") {
