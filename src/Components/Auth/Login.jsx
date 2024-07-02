@@ -4,6 +4,7 @@ import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import logo from '/images/web/logo.png';
 import api from '../../utils/api';
+import jwt_decode from 'jwt-decode';
 
 function Login() {
     const [values, setValues] = useState({ email: '', password: '' });
@@ -21,16 +22,16 @@ function Login() {
             console.log("Response from Login.jsx: ",response);
 
             // Extract the token from response headers
-            const tokenHeader = response.headers['set-cookie'];
-            if (!tokenHeader || tokenHeader.length === 0) {
-                throw new Error('Token not found in response headers.');
-            }
+            // const tokenHeader = response.headers['set-cookie'];
+            // if (!tokenHeader || tokenHeader.length === 0) {
+            //     throw new Error('Token not found in response headers.');
+            // }
 
-            // Extract token value from the set-cookie header
-            const token = tokenHeader[0].split(';')[0].split('=')[1];
+            // // Extract token value from the set-cookie header
+            // const token = tokenHeader[0].split(';')[0].split('=')[1];
 
-            // Store the token securely in cookies after login
-            document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
+            // // Store the token securely in cookies after login
+            // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
 
 
             if (response.data.message === 'Login successful!') {
@@ -40,7 +41,15 @@ function Login() {
                 // const token = response.headers['set-cookie'];
                 // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`; // SameSite=None
                 
-                const role = response.data.role;
+                // Store the token securely in cookies after login
+                const token = response.data.token;
+                document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
+
+                // Decode the token to get the role
+                const decodedToken = jwt_decode(token);
+                const role = decodedToken.role;
+
+                // const role = response.data.role;
                 if (role === "Admin") {
                     navigate('/Admin');
                 } else if (role === "User") {
