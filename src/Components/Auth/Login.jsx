@@ -23,14 +23,15 @@ function Login() {
 
             if (response.data.message === 'Login successful!') {
                 setValues({ email: '', password: '' });
-                
-                // Extract token value from the set-cookie header
-                const token = response.headers['set-cookie'][0].split(';')[0].split('=')[1];
-                console.log("Token: ", token);
-                // Decode the token to get the role
-                const decodedToken = jwt_decode(token);
-                const role = decodedToken.role;
 
+                // const token = response.data.token;
+                // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
+
+                // const decodedToken = jwt_decode(token);
+                // const role = decodedToken.role;
+
+                const role = response.data.role;
+                
                 if (role === "Admin") {
                     navigate('/Admin');
                 } else if (role === "User") {
