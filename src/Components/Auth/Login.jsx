@@ -18,6 +18,7 @@ function Login() {
         event.preventDefault();
         try {
             const response = await api.post('/', values);
+            console.log("Response from Login.jsx: ",response);
             if (response.data.message === 'Login successful!') {
                 setValues({ email: '', password: '' });
                 const role = response.data.role;
