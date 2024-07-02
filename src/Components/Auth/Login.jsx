@@ -4,7 +4,7 @@ import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import logo from '/images/web/logo.png';
 import api from '../../utils/api';
-import jwt_decode from 'jwt-decode';
+import * as jwt_decode from 'jwt-decode';
 
 function Login() {
     const [values, setValues] = useState({ email: '', password: '' });
@@ -48,6 +48,7 @@ function Login() {
                 // Decode the token to get the role
                 const decodedToken = jwt_decode(token);
                 const role = decodedToken.role;
+
 
                 // const role = response.data.role;
                 if (role === "Admin") {
