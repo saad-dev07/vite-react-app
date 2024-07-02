@@ -19,33 +19,18 @@ function Login() {
         event.preventDefault();
         try {
             const response = await api.post('/', values);
-            console.log("Response from Login.jsx: ",response);
-
-            // Extract the token from response headers
-            const tokenHeader = response.headers['set-cookie'];
-            if (!tokenHeader || tokenHeader.length === 0) {
-                throw new Error('Token not found in response headers.');
-            }
-
-            // Extract token value from the set-cookie header
-            const token = tokenHeader[0].split(';')[0].split('=')[1];
-
-            // Store the token securely in cookies after login
-            // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`;
-
+            console.log("Response from Login.jsx: ", response);
 
             if (response.data.message === 'Login successful!') {
                 setValues({ email: '', password: '' });
-
-                // Store the token securely in cookies after login
-                // const token = response.headers['set-cookie'];
-                // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`; // SameSite=None
                 
+                // Extract token value from the set-cookie header
+                const token = response.headers['set-cookie'][0].split(';')[0].split('=')[1];
+                console.log("Token: ", token);
                 // Decode the token to get the role
                 const decodedToken = jwt_decode(token);
                 const role = decodedToken.role;
 
-                // const role = response.data.role;
                 if (role === "Admin") {
                     navigate('/Admin');
                 } else if (role === "User") {
@@ -67,6 +52,64 @@ function Login() {
             }
         }
     };
+
+    // const [values, setValues] = useState({ email: '', password: '' });
+    // const navigate = useNavigate();
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setValues({ ...values, [name]: value });
+    // };
+
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         const response = await api.post('/', values);
+    //         console.log("Response from Login.jsx: ",response);
+
+            
+
+    //         if (response.data.message === 'Login successful!') {
+    //             setValues({ email: '', password: '' });
+    //             // Extract the token from response headers
+    //             const tokenHeader = response.headers['Set-Cookie'];
+    //             if (!tokenHeader || tokenHeader.length === 0) {
+    //                 throw new Error('Token not found in response headers.');
+    //             }
+
+    //             // Extract token value from the set-cookie header
+    //             const token = tokenHeader[0].split(';')[0].split('=')[1];
+
+    //             // Store the token securely in cookies after login
+    //             // const token = response.headers['set-cookie'];
+    //             // document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`; // SameSite=None
+                
+    //             // Decode the token to get the role
+    //             const decodedToken = jwt_decode(token);
+    //             const role = decodedToken.role;
+
+    //             // const role = response.data.role;
+    //             if (role === "Admin") {
+    //                 navigate('/Admin');
+    //             } else if (role === "User") {
+    //                 navigate('/User');
+    //             } else {
+    //                 window.alert('Invalid Role!');
+    //             }
+    //         } else if (response.data.resetPassword) {
+    //             window.alert(response.data.message);
+    //             navigate('/ResetPassword');
+    //         } else {
+    //             window.alert(response.data.message);
+    //         }
+    //     } catch (err) {
+    //         if (err.response && err.response.data && err.response.data.error) {
+    //             window.alert(err.response.data.error);
+    //         } else {
+    //             window.alert('Request failed from Login');
+    //         }
+    //     }
+    // };
 return (
         <div className="bg-image flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat">
             <div className="flex items-center justify-center h-full w-full">
