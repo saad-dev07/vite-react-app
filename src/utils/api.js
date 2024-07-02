@@ -21,17 +21,30 @@ const api = axios.create({
 //     }
 // );
 
+// api.interceptors.request.use(
+//     config => {
+//       const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+//       if (token) {
+//         config.headers['Authorization'] = `Bearer ${token.split('=')[1]}`;
+//       }
+//       return config;
+//     },
+//     error => {
+//       return Promise.reject(error);
+//     }
+//   );
+
 api.interceptors.request.use(
-    config => {
-      const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+    (config) => {
+      const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
       if (token) {
-        config.headers['Authorization'] = `Bearer ${token.split('=')[1]}`;
+        config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     },
-    error => {
+    (error) => {
       return Promise.reject(error);
     }
-  );
+);
 
 export default api;
