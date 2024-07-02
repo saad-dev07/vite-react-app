@@ -31,7 +31,7 @@ function Login() {
             const token = tokenHeader[0].split(';')[0].split('=')[1];
 
             // Store the token securely in cookies after login
-            document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
+            document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure;`;
 
 
             if (response.data.message === 'Login successful!') {
