@@ -23,6 +23,9 @@ function Login() {
             if (response.data.message === 'Login successful!') {
                 setValues({ email: '', password: '' });
 
+                // Store the token securely in cookies after login
+                const token = response.data.token;
+                document.cookie = `token=${token}; Path=/; Domain=pronet-node-api.vercel.app; Secure; SameSite=None`;
                 
                 const role = response.data.role;
                 if (role === "Admin") {
