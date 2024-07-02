@@ -1,21 +1,20 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "vite.config.js",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
       }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "/" }
-    ],
-    "env": {
-      "VITE_API_URL": "https://pronet-node-api.vercel.app",
-      "NODE_ENV": "production",
-      "COOKIE_DOMAIN": "pronet-application.vercel.app"
     }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "env": {
+    "VITE_API_URL": "https://pronet-node-api.vercel.app",
+    "NODE_ENV": "production",
+    "COOKIE_DOMAIN": "pronet-application.vercel.app"
   }
-  
+}
