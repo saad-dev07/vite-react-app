@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
 import api from '../../../utils/api';
@@ -29,11 +30,14 @@ function UserManagement() {
     fetchUsers();
   }, []);
 
+  const navigate = useNavigate();
+
   const handleEdit = (row) => {
-    const UserId = row.UserId;
-    console.log('Edit user with ID:', UserId);
-    // edit code
+      const userId = row.UserId; // Use lowercase 'userId' for consistency
+      console.log('Edit user with ID:', userId);
+      navigate(`/UserManagement/UserProfile/${userId}`);
   };
+  
 
   const handleDelete = async (UserId) => {
     try {

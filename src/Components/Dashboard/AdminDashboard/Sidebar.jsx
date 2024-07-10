@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUsers, faChartLine, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUsers, faUser, faChartLine, faTimes } from '@fortawesome/free-solid-svg-icons';
 import logo from '/images/web/logo.png';
 import api from '../../../utils/api';
 
@@ -66,19 +66,36 @@ function Sidebar({ isOpen, closeSidebar }) {
             </li>
 
             <li className="mt-0.5 w-full">
-              <NavLink to="/UserManagement"
-                className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
-                  ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
-                {({ isActive }) => (
-                  <>
-                    <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 
-                      ${isActive ? 'bg-gradient-to-tl from-red-600 to-pink-600 shadow-soft-2xl text-white' : 'bg-gradient-to-tl from-red-600 to-pink-600 shadow-soft-2xl'}`}>
-                      <FontAwesomeIcon icon={faUsers} className={`${isActive ? 'text-white' : 'text-white group-hover:text-slate-700'}`} />
-                    </div>
-                    <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">User Management</span>
-                  </>
-                )}
-              </NavLink>
+              {<NavLink to="/UserManagement"></NavLink> ?
+                <NavLink to="/UserManagement"
+                  className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
+                    ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
+                  {({ isActive }) => (
+                    <>
+                      <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 
+                        ${isActive ? 'bg-gradient-to-tl from-red-600 to-pink-600 shadow-soft-2xl text-white' : 'bg-gradient-to-tl from-red-600 to-pink-600 shadow-soft-2xl'}`}>
+                        <FontAwesomeIcon icon={faUsers} className={`${isActive ? 'text-white' : 'text-white group-hover:text-slate-700'}`} />
+                      </div>
+                      <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">User Management</span>
+                    </>
+                  )}
+                </NavLink>
+              :
+                <NavLink to="/UserManagement/UserProfile"
+                  className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
+                    ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
+                  {({ isActive }) => (
+                    <>
+                      <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 
+                        ${isActive ? 'bg-gradient-to-tl from-red-600 to-pink-600 shadow-soft-2xl text-white' : 'bg-gradient-to-tl from-red-600 to-pink-600 shadow-soft-2xl'}`}>
+                        <FontAwesomeIcon icon={faUsers} className={`${isActive ? 'text-white' : 'text-white group-hover:text-slate-700'}`} />
+                      </div>
+                      <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">User Profile</span>
+                    </>
+                  )}
+                </NavLink>
+              }
+              
             </li>
 
             <li className="mt-0.5 w-full">

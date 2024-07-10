@@ -51,65 +51,71 @@ return (
               <h6 className="text-xl font-semibold mb-5">Recordings Table</h6>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-10 mb-8">
-              {/* Calling Number Search Box */}
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-medium text-gray-700">Calling Number</label>
-                <div className="relative flex items-stretch w-full transition-all rounded-md ease-soft">
-                  <span className="text-sm ease-soft leading-5.6 absolute z-50 flex h-full items-center whitespace-nowrap rounded-md rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-gray-700 transition-all">
-                    <FontAwesomeIcon icon={faSearch} />
-                  </span>
-                  <input type="text" className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-full leading-5.6 relative block min-w-0 flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Search with calling no..." />
-                </div>
-              </div>
-              {/* Inum Search Box */}
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-medium text-gray-700">Inum</label>
-                <div className="relative flex items-stretch w-full transition-all rounded-md ease-soft">
-                  <span className="text-sm ease-soft leading-5.6 absolute z-50 flex h-full items-center whitespace-nowrap rounded-md rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-gray-700 transition-all">
-                    <FontAwesomeIcon icon={faSearch} />
-                  </span>
-                  <input type="text" className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-full leading-5.6 relative block min-w-0 flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Search with inum..." />
-                </div>
-              </div>
-              {/* Start Date Search Box */}
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-medium text-gray-700">Start Date</label>
-                <div className="relative flex items-stretch w-full transition-all rounded-md ease-soft">
-                  <input type="date" className="pl-3 text-sm focus:shadow-soft-primary-outline ease-soft w-full leading-5.6 relative block min-w-0 flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" />
-                </div>
-              </div>
-              {/* Call Type Search Box */}
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-medium text-gray-700">Call Type</label>
-                <div className="relative flex items-stretch w-full transition-all rounded-md ease-soft">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 px-10 mb-8">
+              {/* Calling No. */}
+              <div className="flex items-center space-x-2">
+                <label className="text-sm font-medium text-gray-700">Calling No.</label>
+                <div className="relative flex items-stretch transition-all rounded-md ease-soft">
                   <span className="text-sm ease-soft leading-5.6 absolute z-50 flex h-full items-center whitespace-nowrap rounded-md rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-gray-700 transition-all">
                     <FontAwesomeIcon icon={faPhone} />
                   </span>
-                  <select className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-full leading-5.6 relative block min-w-0 flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow">
-                    <option value="">Select call type</option>
-                    <option value="incoming">Incoming</option>
-                    <option value="outgoing">Outgoing</option>
-                  </select>
+                  <input type="text" className="pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 block flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Search with calling no..." style={{ width: '200px' }} />
                 </div>
               </div>
-              {/* Dialed Number Search Box */}
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-medium text-gray-700">Dialed Number</label>
-                <div className="relative flex items-stretch w-full transition-all rounded-md ease-soft">
+              
+              {/* Inum */}
+              <div className="flex items-center space-x-2">
+                <label className="text-sm font-medium text-gray-700">Inum</label>
+                <div className="pl-8.75 relative flex items-stretch transition-all rounded-md ease-soft">
                   <span className="text-sm ease-soft leading-5.6 absolute z-50 flex h-full items-center whitespace-nowrap rounded-md rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-gray-700 transition-all">
                     <FontAwesomeIcon icon={faSearch} />
                   </span>
-                  <input type="text" className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-full leading-5.6 relative block min-w-0 flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Search with dialed no..." />
+                  <input type="text" className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 block flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Search with calling no..." style={{ width: '200px' }} />
                 </div>
               </div>
-              {/* End Date Search Box */}
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-medium text-gray-700">End Date</label>
-                <div className="relative flex items-stretch w-full transition-all rounded-md ease-soft">
-                  <input type="date" className="pl-3 text-sm focus:shadow-soft-primary-outline ease-soft w-full leading-5.6 relative block min-w-0 flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" />
+
+              {/* Start Date */}
+              <div className="flex items-center space-x-2">
+                <label className="text-sm font-medium text-gray-700">Start Date</label>
+                <div className="relative flex items-stretch transition-all rounded-md ease-soft">
+                  <input type="date" className="pl-3 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 block flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" style={{ width: '200px' }} />
                 </div>
               </div>
+
+              {/* Call Type */}
+              <div className="flex items-center space-x-2">
+                  <label className="text-sm font-medium text-gray-700">Call Type</label>
+                  <div className="pl-3.5 relative flex items-stretch transition-all rounded-md ease-soft">
+                    <span className="text-sm ease-soft leading-5.6 absolute z-50 flex h-full items-center whitespace-nowrap rounded-md rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-gray-700 transition-all">
+                      <FontAwesomeIcon icon={faPhone} />
+                    </span>
+                    <select className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 block flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" style={{ width: '200px' }}>
+                      <option className="text-gray-500" value="">Select call type...</option>
+                      <option value="incoming">Incoming</option>
+                      <option value="outgoing">Outgoing</option>
+                    </select>
+                  </div>
+                </div>
+
+              {/* Dialed No. */}
+              <div className="flex items-center space-x-2">
+                <label className="text-sm font-medium text-gray-700">Dialed No.</label>
+                <div className="relative flex items-stretch transition-all rounded-md ease-soft">
+                  <span className="text-sm ease-soft leading-5.6 absolute z-50 flex h-full items-center whitespace-nowrap rounded-md rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-gray-700 transition-all">
+                    <FontAwesomeIcon icon={faPhone} />
+                  </span>
+                  <input type="text" className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 block flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Search with calling no..." style={{ width: '200px' }} />
+                </div>
+              </div>
+
+              {/* End Date */}
+              <div className="flex items-center space-x-2">
+                <label className="text-sm font-medium text-gray-700">End Date</label>
+                <div className="pl-2 relative flex items-stretch transition-all rounded-md ease-soft">
+                  <input type="date" className="pl-3 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 block flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" style={{ width: '200px' }} />
+                </div>
+              </div>
+
             </div>
 
             <div className="flex items-center justify-end space-x-2 px-10 mb-8">
@@ -120,11 +126,13 @@ return (
                 </span>
                 <input type="text" className="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-32 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-md border border-solid border-gray-300 bg-white bg-clip-padding py-1.5 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Search anything..." />
               </div>
-              {/* Buttons with Gradient Hover */}
-              <button className="bg-white text-blue-500 border border-blue-500 px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Search</button>
-              <button className="bg-white text-yellow-500 border border-yellow-500 px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-yellow-400">Print</button>
-              <button className="bg-white text-green-500 border border-green-500 px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-400">Export to Excel</button>
-              <button className="bg-white text-red-500 border border-red-500 px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-400">Download PDF</button>
+
+              {/* Buttons */}
+              <button className="bg-gradient-to-b from-blue-600 to-blue-700 text-white border border-transparent px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-t hover:from-blue-700 hover:to-blue-800 focus:outline-none">Search</button>
+              <button className="bg-gradient-to-b from-yellow-600 to-yellow-700 text-white border border-transparent px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-t hover:from-yellow-700 hover:to-yellow-800 focus:outline-none">Print</button>
+              <button className="bg-gradient-to-b from-green-600 to-green-700 text-white border border-transparent px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-t hover:from-green-700 hover:to-green-800 focus:outline-none">Export to Excel</button>
+              <button className="bg-gradient-to-b from-red-600 to-red-700 text-white border border-transparent px-2 py-1 rounded-md text-sm shadow-md transition-all duration-300 hover:bg-gradient-to-t hover:from-red-700 hover:to-red-800 focus:outline-none">Download PDF</button>
+
             </div>
 
             <div className="flex-auto px-0 pt-0 pb-2">

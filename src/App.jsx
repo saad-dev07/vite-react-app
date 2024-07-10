@@ -7,6 +7,7 @@ import AdminDashboard from './Components/Dashboard/AdminDashboard/AdminDashboard
 import Reports from './Components/Dashboard/AdminDashboard/Reports';
 import UserManagement from './Components/Dashboard/AdminDashboard/UserManagement';
 import UserDashboard from './Components/Dashboard/UserDashboard/UserDashboard';
+import UserProfile from './Components/Dashboard/AdminDashboard/UserProfile';
 
 function App() {
   const PageTitle = ({ title }) => {
@@ -55,6 +56,11 @@ function App() {
           </>}
         />
 
+        <Route path='/UserManagement/UserProfile/:userId'
+          element={<>
+            <PageTitle title="User Profile | Pronet" /><UserProfile />
+          </>}
+        />
         <Route path='/User'
           element={<>
             <PageTitle title="User Dashboard | Pronet" /><UserDashboard />
