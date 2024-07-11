@@ -7,11 +7,8 @@ import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 function Topbar({ toggleSidebar }) {
   const [name, setName] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => { setIsDropdownOpen(!isDropdownOpen); };
   const navigate = useNavigate();
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   useEffect(() => {
     api.get('/')

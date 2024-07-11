@@ -10,13 +10,9 @@ import { faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 function UserManagement() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [fetchUsersData, setFetchUsersData] = useState([]);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const toggleSidebar = () => { setIsSidebarOpen(!isSidebarOpen); };
+  const closeSidebar = () => { setIsSidebarOpen(false); };
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -30,15 +26,12 @@ function UserManagement() {
     fetchUsers();
   }, []);
 
-  const navigate = useNavigate();
-
   const handleEdit = (row) => {
-      const userId = row.UserId; // Use lowercase 'userId' for consistency
+      const userId = row.UserId;
       console.log('Edit user with ID:', userId);
       navigate(`/UserManagement/UserProfile/${userId}`);
   };
   
-
   const handleDelete = async (UserId) => {
     try {
       const response = await api.delete('/Delete', {

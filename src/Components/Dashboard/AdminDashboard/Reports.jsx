@@ -9,13 +9,8 @@ import { faSearch, faPhone } from '@fortawesome/free-solid-svg-icons';
 function Recordings() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [recordingsData, setRecordingsData] = useState([]);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const toggleSidebar = () => { setIsSidebarOpen(!isSidebarOpen); };
+  const closeSidebar = () => { setIsSidebarOpen(false); };
 
   useEffect(() => {
     const recordingsData = async () => {

@@ -25,7 +25,6 @@ function Sidebar({ isOpen, closeSidebar }) {
         console.error('Error fetching role:', error);
       }
     };
-
     fetchRole();
   }, []);
   

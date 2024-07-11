@@ -17,16 +17,9 @@ import Topbar from './Topbar';
 import Sidebar from './Sidebar';
 
 function AdminDashboard() {
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const toggleSidebar = () => { setIsSidebarOpen(!isSidebarOpen); };
+  const closeSidebar = () => { setIsSidebarOpen(false); };
 
   return (
     <div className="absolute top-0 left-0 w-full h-full">
