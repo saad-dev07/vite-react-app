@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
 import api from '../../../utils/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
-const UserProfile = () => {
+function UserProfile () {
+// const UserProfile = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -14,20 +15,9 @@ const UserProfile = () => {
     const closeSidebar = () => {
         setIsSidebarOpen(false);
     };
-
     const { userId } = useParams();
     const [user, setUser] = useState({});
-    const [values, setValues] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        fullName: '',
-        password: '',
-        confirmPassword: '',
-        contactNo: '',
-        userRole: '',
-        profileImage: ''
-    });
+    const [values, setValues] = useState({ firstName: '', lastName: '', email: '', fullName: '', password: '', confirmPassword: '', contactNo: '', userRole: '', profileImage: '' });
     const [roles, setRoles] = useState([]);
     const [editing, setEditing] = useState(false);
 
@@ -75,8 +65,6 @@ const UserProfile = () => {
         setEditing(true);
     };
 
-    const navigate = useNavigate();
-
     const handleSave = async () => {
         const formData = new FormData();
         formData.append('firstName', values.firstName);
@@ -99,11 +87,17 @@ const UserProfile = () => {
             });
             window.alert("User Updated Successfully!")
             window.location.reload();
-            // navigate(`../UserManagement/UserProfile/${userId}`);
-        } catch (error) {
-            console.error('Error saving user data:', error);
-        }
+        } 
+        catch(err) {
+            if (err.response && err.response.data && err.response.data.error) {
+                window.alert(err.response.data.error);
+            } else {
+                window.alert("Try checking browser console!");
+                console.log(err);
+            }
+        };
     };
+    
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setValues({ ...values, [name]: value });
@@ -141,7 +135,7 @@ const UserProfile = () => {
                                 <div className="w-full flex justify-center mt-4">
                                     {editing ? (
                                         <div className="flex space-x-4">
-                                            <button onClick={handleSave} className="text-sm font-bold text-white bg-blue-500 rounded-full px-5 py-2 transition duration-300 hover:bg-blue-600">Save Changes</button>
+                                            <button onClick={handleSave} className="text-sm font-bold  bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-full px-5 py-2 transition duration-300">Save Changes</button>
                                             <button onClick={() => setEditing(false)} className="text-sm font-bold text-white bg-gray-700 rounded-full px-5 py-2 transition duration-300 hover:bg-gray-800">Cancel</button>
                                         </div>
                                     ) : (
@@ -150,7 +144,7 @@ const UserProfile = () => {
                                 </div>
                             </div>
 
-                            <form className="w-full md:w-3/5 p-5 space-y-4" onSubmit={handleSave} encType="multipart/form-data" >
+                            <form className="w-full md:w-4/5 p-5 space-y-4" onSubmit={handleSave} encType="multipart/form-data" >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="flex flex-col">
                                         <label htmlFor="firstName" className="mb-2 text-sm font-medium text-gray-700">First Name:</label>
