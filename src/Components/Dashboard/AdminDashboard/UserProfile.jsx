@@ -127,8 +127,8 @@ const UserProfile = () => {
                 <Topbar toggleSidebar={toggleSidebar} />
 
                 {/* Profile Form */}
-                <div className="flex flex-1 justify-center items-center">
-                    <div className="w-full max-w-4xl">
+                <div className="flex flex-1 justify-center mt-3 pt-5 px-0">
+                    <div className="w-full max-w-6xl">
                         <div className="border-b-2 flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
                             <div className="w-full md:w-2/5 p-6 bg-white shadow-md">
                                 <div className="flex justify-between items-center mb-4">
