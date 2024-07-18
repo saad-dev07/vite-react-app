@@ -6,6 +6,7 @@ import api from '../../../utils/api';
 import DataTable from 'react-data-table-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
+// import register from '../../Auth/Register';
 
 function UserManagement() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -26,9 +27,13 @@ function UserManagement() {
     fetchUsers();
   }, []);
 
+  const CreateNewUser = async () => {
+    navigate('/UserManagement/Register');
+  }
+
   const handleEdit = (row) => {
       const userId = row.UserId;
-      console.log('Edit user with ID:', userId);
+      // console.log('Edit user with ID:', userId);
       navigate(`/UserManagement/UserProfile/${userId}`);
   };
   
@@ -62,8 +67,9 @@ function UserManagement() {
         <div className="w-full px-6 py-6 mx-auto">
           <div className="flex-none w-full max-w-full px-3">
             <div className="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-              <div className="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                <h6 className="text-xl font-semibold mb-5">User Management</h6>
+              <div className="flex justify-between items-center p-6 pb-0 mb-3 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                <h6 className="text-xl font-semibold">User Management</h6>
+                <button className="text-sm font-bold bg-gradient-to-r from-red-700 to-pink-600 text-white hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-700 rounded-full px-5 py-2 transition duration-300" onClick={CreateNewUser}>Create User</button>
               </div>
               <div className="flex-auto px-0 pt-0 pb-2">
                 <div className="p-0 overflow-x-auto">
@@ -82,7 +88,7 @@ function UserManagement() {
                                   );
                               },
                               sortable: false,
-                              center: true,
+                              center: "true",
                               wrap: true,
                           },
                           {

@@ -30,11 +30,10 @@ function Sidebar({ isOpen, closeSidebar }) {
   
   return (
     <aside className={`fixed inset-y-0 my-4 ml-4 block w-64 flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-lg transition-transform duration-200 xl:left-0 ${isOpen ? 'translate-x-0' : '-translate-x-full xl:translate-x-0'}`}>
-
       <div className="flex justify-center items-center py-4">
         {role === "Admin" ? 
           <NavLink to={'/Admin'}>
-            <img src={logo} className="h-14 w-30 ease-nav-brand" alt="main_logo" />
+            <img src={logo} className="h-18 w-30 ease-nav-brand" alt="main_logo" />
           </NavLink>
         :
           <NavLink to={'/User'}>
@@ -42,16 +41,14 @@ function Sidebar({ isOpen, closeSidebar }) {
           </NavLink>
         }
       </div>
-
       <hr className="h-px mt-0 mb-3 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
-
       <div className="items-center block w-auto max-h-screen h-sidenav grow basis-full">
         {role === "Admin" ?
           <ul className="flex flex-col pl-0 mb-0">
             <li className="mt-0.5 w-full">
               <NavLink to="/Admin"
                 className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
-                  ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
+                  ${isActive ? 'bg-gradient-to-r from-red-600 to-pink-600 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-600 hover:text-white'}`} >
                 {({ isActive }) => (
                   <>
                     <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 
@@ -68,7 +65,7 @@ function Sidebar({ isOpen, closeSidebar }) {
               {<NavLink to="/UserManagement"></NavLink> ?
                 <NavLink to="/UserManagement"
                   className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
-                    ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
+                    ${isActive ? 'bg-gradient-to-r from-red-600 to-pink-600 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-600 hover:text-white'}`} >
                   {({ isActive }) => (
                     <>
                       <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 
@@ -82,7 +79,7 @@ function Sidebar({ isOpen, closeSidebar }) {
               :
                 <NavLink to="/UserManagement/UserProfile"
                   className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
-                    ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
+                    ${isActive ? 'bg-gradient-to-r from-red-600 to-pink-600 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-600 hover:text-white'}`} >
                   {({ isActive }) => (
                     <>
                       <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 
@@ -100,7 +97,7 @@ function Sidebar({ isOpen, closeSidebar }) {
             <li className="mt-0.5 w-full">
               <NavLink to="/Reports"
                 className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
-                  ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
+                  ${isActive ? 'bg-gradient-to-r from-red-600 to-pink-600 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-600 hover:text-white'}`} >
                 {({ isActive }) => (
                   <>
                     <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 
@@ -118,7 +115,7 @@ function Sidebar({ isOpen, closeSidebar }) {
             <li className="mt-0.5 w-full">
             <NavLink to="/User"
               className={({ isActive }) => `group py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold transition-all 
-                ${isActive ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:text-white'}`} >
+                ${isActive ? 'bg-gradient-to-r from-red-600 to-pink-600 text-white' : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-600 hover:text-white'}`} >
               {({ isActive }) => (
                 <>
                   <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5 

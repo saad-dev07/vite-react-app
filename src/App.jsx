@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from './Components/Auth/Register';
 import Login from './Components/Auth/Login';
@@ -8,6 +8,8 @@ import Reports from './Components/Dashboard/AdminDashboard/Reports';
 import UserManagement from './Components/Dashboard/AdminDashboard/UserManagement';
 import UserDashboard from './Components/Dashboard/UserDashboard/UserDashboard';
 import UserProfile from './Components/Dashboard/AdminDashboard/UserProfile';
+// import api from './utils/api';
+// import tokenExpiryCheck from './utils/tokenExpiryCheck';
 
 function App() {
   const PageTitle = ({ title }) => {
@@ -16,65 +18,28 @@ function App() {
     }, [title]);
     return null;
   };
-
+  // tokenExpiryCheck();
   return (
     <Router>
       <Routes>
-        <Route path='/' 
-          element={<>
-            <PageTitle title="Login | Pronet" /><Login />
-          </>}
-        />
+        <Route path='/' element={<><PageTitle title="Login | Pronet" /><Login /></>}/>
 
-        <Route path='/Register'
-          element={<>
-            <PageTitle title="Register | Pronet" /><Register />
-          </>}
-        />
+        <Route path='/ResetPassword' element={<><PageTitle title="Reset Password | Pronet" /><ResetPassword /></>}/>
 
-        <Route path='/ResetPassword'
-          element={<>
-            <PageTitle title="ResetPassword | Pronet" /><ResetPassword />
-          </>}
-        />
+        <Route path='/Admin'element={<><PageTitle title="Admin Dashboard | Pronet" /><AdminDashboard /></>}/>
 
-        <Route path='/Admin'
-          element={<>
-            <PageTitle title="Admin Dashboard | Pronet" /><AdminDashboard />
-          </>}
-        />
+        <Route path='/User' element={<><PageTitle title="User Dashboard | Pronet" /><UserDashboard /></>}/>
 
-        <Route path='/Reports'
-          element={<>
-            <PageTitle title="Reports | Pronet" /><Reports />
-          </>}
-        />
+        <Route path='/UserManagement' element={<><PageTitle title="User Management | Pronet" /><UserManagement /></>}/>
+        
+        <Route path='/UserManagement/Register' element={<> <PageTitle title="Create New User | Pronet" /><Register /></>}/>
 
-        <Route path='/UserManagement'
-          element={<>
-            <PageTitle title="User Management | Pronet" /><UserManagement />
-          </>}
-        />
+        <Route path='/UserManagement/UserProfile/:userId' element={<><PageTitle title="User Profile | Pronet" /><UserProfile /></>}/>
 
-        <Route path='/UserManagement/UserProfile/:userId'
-          element={<>
-            <PageTitle title="User Profile | Pronet" /><UserProfile />
-          </>}
-        />
-        <Route path='/User'
-          element={<>
-            <PageTitle title="User Dashboard | Pronet" /><UserDashboard />
-          </>}
-        />
-
-        <Route path='/Reports'
-          element={<>
-            <PageTitle title="Reports | Pronet" /><Reports />
-          </>}
-        />
+        <Route path='/Reports' element={<><PageTitle title="Reports | Pronet" /><Reports /></>}/>
       </Routes>
     </Router>
-  )
-}
+  );
+};
 
 export default App;

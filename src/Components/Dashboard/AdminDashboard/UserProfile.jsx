@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
 import api from '../../../utils/api';
@@ -15,6 +15,8 @@ function UserProfile () {
     const [roles, setRoles] = useState([]);
     const [allRoles, setAllRoles] = useState([]);
     const [editing, setEditing] = useState(false);
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -51,6 +53,9 @@ function UserProfile () {
     };
     const handleEdit = () => {
         setEditing(true);
+    };
+    const backToUserManagement = () => {
+        navigate('/UserManagement');
     };
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -124,11 +129,15 @@ return (
                             <div className="w-full flex justify-center mt-4">
                                 {editing ? (
                                     <div className="flex space-x-4">
-                                        <button onClick={handleSave} className="text-sm font-bold  bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-full px-5 py-2 transition duration-300">Save Changes</button>
-                                        <button onClick={() => setEditing(false)} className="text-sm font-bold text-white bg-gray-700 rounded-full px-5 py-2 transition duration-300 hover:bg-gray-800">Cancel</button>
+                                        <button onClick={handleSave} className="text-sm font-bold bg-gradient-to-r from-red-700 to-pink-600 text-white hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-700 rounded-full px-5 py-2 transition duration-300">Save Changes</button>
+                                        <button onClick={() => setEditing(false)} className="text-sm font-bold text-white bg-gray-600 rounded-full px-5 py-2 transition duration-300 hover:bg-gray-800">Cancel</button>
                                     </div>
                                 ) : (
-                                    <button onClick={handleEdit} className="text-sm font-bold text-white bg-gray-700 rounded-full px-5 py-2 transition duration-300 hover:bg-gray-800">Edit</button>
+                                    // <button onClick={handleEdit} className="text-sm font-bold text-white bg-gray-700 rounded-full px-5 py-2 transition duration-300 hover:bg-gray-800">Edit</button>
+                                    <div className="flex space-x-4">
+                                        <button onClick={handleEdit} className="text-sm font-bold bg-gradient-to-r from-red-700 to-pink-600 text-white hover:bg-gradient-to-r hover:from-red-600 hover:to-pink-700 rounded-full px-5 py-2 transition duration-300">Edit User</button>
+                                        <button onClick={backToUserManagement} className="text-sm font-bold text-white bg-gray-600 rounded-full px-5 py-2 transition duration-300 hover:bg-gray-800">Go Back</button>
+                                    </div>
                                 )}
                             </div>
                         </div>
